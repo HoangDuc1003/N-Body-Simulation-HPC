@@ -19,8 +19,8 @@ This sub-project implements the core logic for simulating gravitational interact
 * **Execution Time:** ~5.0 seconds.
 * **Performance:** Limited to a single CPU core execution.
 
-> **Minh chứng benchmark cho Phase 1:**
-> ![Benchmark Phase 1](docs/image_7f8c6b.jpg)
+> **Benchmark proof for Phase 1:**
+> ![Benchmark Phase 1](docs/benchmark_p1_1.png)
 
 ## 🚀 How to Build & Run
 ```bash

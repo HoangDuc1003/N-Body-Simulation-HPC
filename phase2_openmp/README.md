@@ -9,8 +9,9 @@
 
 ## 🚀 Performance Breakthrough
 This version optimizes the simulation by leveraging **OpenMP** to distribute the heavy computational workload across all available CPU cores. 
-> ![Benchmark Phase 2 - 1](docs/image_7f8c4d.jpg)
-> ![Benchmark Phase 2 - 2](docs/image_7f8c66.png)
+> **Performance breakthrough proof for Phase 2:**
+> ![Benchmark Phase 2 - 1](docs/benchmark_p2_1.png)
+> ![Benchmark Phase 2 - 2](docs/benchmark_p2_2.png)
 ### 🛠 Optimization Highlights
 * **Parallelization:** Utilizes `#pragma omp parallel for` with `dynamic` scheduling for optimal load balancing.
 * **Race Condition Avoidance:** Implements a thread-safe accumulation model to maintain data integrity without performance-killing locks.
