@@ -1,4 +1,4 @@
-### 2. File `README.md` cho Phase 2 (OpenMP Parallel)
+2. File `README.md` cho Phase 2 (OpenMP Parallel)
 *Vị trí: `/phase2_openmp/README.md`*
 
 ```markdown
