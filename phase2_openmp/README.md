@@ -1,9 +1,5 @@
-2. File `README.md` cho Phase 2 (OpenMP Parallel)
-*Vị trí: `/phase2_openmp/README.md`*
-
-```markdown
 # ⚡ N-Body Simulation - Phase 2: OpenMP Parallelization
-> **Tối ưu hóa hiệu năng cực hạn với lập trình song song.**
+> **Achieving massive speedup through Multi-Core Parallel Computing.**
 
 ![C++](https://img.shields.io/badge/C++-17-blue?style=for-the-badge&logo=c%2B%2B)
 ![OpenMP](https://img.shields.io/badge/OpenMP-Enabled-orange?style=for-the-badge)
@@ -11,26 +7,24 @@
 
 ---
 
-## 🚀 Đột phá về Hiệu năng
-Phiên bản này sử dụng **OpenMP** để phân chia khối lượng tính toán cho toàn bộ các nhân CPU rảnh rỗi, mang lại tốc độ xử lý vượt trội.
+## 🚀 Performance Breakthrough
+This version optimizes the simulation by leveraging **OpenMP** to distribute the heavy computational workload across all available CPU cores. 
+> ![Benchmark Phase 2 - 1](docs/image_7f8c4d.jpg)
+> ![Benchmark Phase 2 - 2](docs/image_7f8c66.png)
+### 🛠 Optimization Highlights
+* **Parallelization:** Utilizes `#pragma omp parallel for` with `dynamic` scheduling for optimal load balancing.
+* **Race Condition Avoidance:** Implements a thread-safe accumulation model to maintain data integrity without performance-killing locks.
+* **Zero-Overhead Scaling:** Designed to scale linearly with the number of CPU threads.
+* **Compiler-Level Tuning:** Leverages `-O3` and `-fopenmp` flags for maximum throughput.
 
-### 🛠 Các kỹ thuật tối ưu hóa
-* **Parallel For:** Sử dụng `#pragma omp parallel for` để song song hóa vòng lặp tính lực.
-* **Dynamic Scheduling:** Tối ưu hóa việc phân chia công việc (Load Balancing) giữa các nhân CPU.
-* **Race Condition Avoidance:** Thiết kế kiến trúc bộ nhớ an toàn, tránh xung đột dữ liệu mà không cần dùng Lock (Lock-free approach).
-* **Compiler Flags:** Kích hoạt tối ưu hóa `-O3` để CPU xử lý các phép tính toán học nhanh nhất.
-
-## 📊 Bảng so sánh hiệu năng
-| Chỉ số | Phase 1 (Tuần tự) | Phase 2 (Song song) | Cải thiện |
+## 📊 Performance Comparison
+| Metric | Sequential (Phase 1) | OpenMP (Phase 2) | Speedup |
 | :--- | :--- | :--- | :--- |
-| **Thời gian chạy** | 5.0s | **0.62s** | **-87.6%** |
-| **Tốc độ xử lý** | Baseline | **8.06x Faster** | **+706%** |
+| **Execution Time** | ~5.0s | **0.62s** | **8.06x** |
+| **Efficiency** | Baseline | **High Performance** | **+706%** |
 
-> **Minh chứng:**
-> ![Benchmark Chart](../docs/benchmark.png) *(Hãy thay bằng ảnh screenshot Terminal của bạn)*
-
-## 🔨 Cách biên dịch tối ưu
-Để đạt được hiệu năng cao nhất, hãy sử dụng lệnh biên dịch thủ công sau:
+## 🔨 Compilation for Maximum Speed
+To get the best performance out of your hardware, use this command:
 ```bash
 g++ -O3 -fopenmp src/main.cpp -o nbody_omp
 ./nbody_omp

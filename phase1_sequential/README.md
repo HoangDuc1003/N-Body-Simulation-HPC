@@ -1,33 +1,31 @@
 # 🌌 N-Body Simulation - Phase 1: Sequential Baseline
-> **Cấu trúc nền tảng cho mô phỏng vật lý thiên văn.**
+> **The foundational physics engine for gravitational interaction.**
 
 ![C++](https://img.shields.io/badge/C++-17-blue?style=for-the-badge&logo=c%2B%2B)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
 ---
 
-## 📖 Giới thiệu
-Dự án này mô phỏng tương tác trọng lực giữa $N$ vật thể trong không gian 3D. Đây là phiên bản **Sequential (Tuần tự)**, đóng vai trò là cột mốc (Baseline) để đo lường hiệu năng cho các giải pháp tối ưu hóa sau này.
+## 📖 Overview
+This sub-project implements the core logic for simulating gravitational interactions between $N$ bodies in a 3D environment. It serves as the **Baseline** to verify mathematical accuracy before applying high-performance optimizations.
 
-## 🛠 Đặc tính kỹ thuật
-* **Cấu trúc dữ liệu:** Sử dụng `struct Body` tối ưu để quản lý tọa độ $(x, y, z)$, vận tốc và khối lượng.
-* **Thuật toán:** Tính toán lực Newton $F = G \frac{m_1 m_2}{r^2}$ với độ phức tạp $O(N^2)$.
-* **Xử lý số học:** Sử dụng hệ số `SOFTENING` để tránh lỗi chia cho 0 khi các vật thể va chạm.
+## 🛠 Technical Details
+* **Algorithm:** Implements Newton's Law of Universal Gravitation with $O(N^2)$ time complexity.
+* **Optimization:** Used Newton's 3rd Law to reduce force calculations by 50% for sequential execution.
+* **Accuracy:** Features a `SOFTENING` constant to handle close-range interactions and prevent singularities.
 
-## 🐢 Kết quả Benchmark
-* **Số lượng:** 10,000 vật thể.
-* **Thời gian:** ~5.0 giây.
-* **Đặc điểm:** Chỉ sử dụng 1 nhân duy nhất của CPU, chưa tận dụng hết phần cứng.
+## 📊 Benchmark
+* **Dataset:** 10,000 bodies.
+* **Execution Time:** ~5.0 seconds.
+* **Performance:** Limited to a single CPU core execution.
 
-## 🚀 Hướng dẫn cài đặt
+> **Minh chứng benchmark cho Phase 1:**
+> ![Benchmark Phase 1](docs/image_7f8c6b.jpg)
+
+## 🚀 How to Build & Run
 ```bash
-# Di chuyển vào thư mục
-cd phase1_sequential
-
-# Biên dịch dự án
+# From this directory
 mkdir build && cd build
 cmake ..
 make
-
-# Khởi chạy
 ./nbody_sim
