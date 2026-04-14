@@ -1,29 +1,36 @@
-# N-Body Simulation - Phase 2: Parallel Computing with OpenMP
+### 2. File `README.md` cho Phase 2 (OpenMP Parallel)
+*Vị trí: `/phase2_openmp/README.md`*
 
-## 📌 Giới thiệu
-Phiên bản này nâng cấp từ Phase 1, tập trung vào việc tối ưu hóa hiệu năng bằng cách tận dụng sức mạnh đa nhân của CPU hiện đại. Đây là bước nhảy vọt về tốc độ xử lý cho các bài toán tính toán lớn.
+```markdown
+# ⚡ N-Body Simulation - Phase 2: OpenMP Parallelization
+> **Tối ưu hóa hiệu năng cực hạn với lập trình song song.**
 
-## 🛠 Công nghệ sử dụng
-* **Parallel API:** OpenMP
-* **Optimization:** Compiler Flags `-O3`, `-fopenmp`
-* **Ngôn ngữ:** C++17
+![C++](https://img.shields.io/badge/C++-17-blue?style=for-the-badge&logo=c%2B%2B)
+![OpenMP](https://img.shields.io/badge/OpenMP-Enabled-orange?style=for-the-badge)
+![Speed](https://img.shields.io/badge/Performance-8x_Faster-red?style=for-the-badge)
 
-## 🚀 Các cải tiến cốt lõi
-1. **Multi-threading:** Sử dụng `#pragma omp parallel for` để chia sẻ khối lượng tính toán cho toàn bộ nhân CPU.
-2. **Race Condition Handling:** Tái cấu trúc logic để đảm bảo an toàn bộ nhớ khi nhiều luồng cùng ghi dữ liệu (Data Integrity).
-3. **Load Balancing:** Sử dụng `schedule(dynamic)` để phân phối công việc linh hoạt cho các core.
+---
 
-## 📈 Kết quả vượt trội (Benchmark)
-| Thông số | Phase 1 (Sequential) | Phase 2 (OpenMP) |
-| :--- | :--- | :--- |
-| **Số vật thể** | 10,000 | 10,000 |
-| **Thời gian** | ~5.0s | **0.62s** |
-| **Speedup** | 1x | **8.06x** |
+## 🚀 Đột phá về Hiệu năng
+Phiên bản này sử dụng **OpenMP** để phân chia khối lượng tính toán cho toàn bộ các nhân CPU rảnh rỗi, mang lại tốc độ xử lý vượt trội.
 
-**⚡ Hiệu năng tăng trưởng: ~700%**
+### 🛠 Các kỹ thuật tối ưu hóa
+* **Parallel For:** Sử dụng `#pragma omp parallel for` để song song hóa vòng lặp tính lực.
+* **Dynamic Scheduling:** Tối ưu hóa việc phân chia công việc (Load Balancing) giữa các nhân CPU.
+* **Race Condition Avoidance:** Thiết kế kiến trúc bộ nhớ an toàn, tránh xung đột dữ liệu mà không cần dùng Lock (Lock-free approach).
+* **Compiler Flags:** Kích hoạt tối ưu hóa `-O3` để CPU xử lý các phép tính toán học nhanh nhất.
 
-## 🔨 Cách chạy
-1. Truy cập thư mục: `cd phase2_openmp`
-2. Biên dịch thủ công (để tối ưu tốt nhất):
-   ```bash
-   g++ -O3 -fopenmp src/main.cpp -o nbody_omp
+## 📊 Bảng so sánh hiệu năng
+| Chỉ số | Phase 1 (Tuần tự) | Phase 2 (Song song) | Cải thiện |
+| :--- | :--- | :--- | :--- |
+| **Thời gian chạy** | 5.0s | **0.62s** | **-87.6%** |
+| **Tốc độ xử lý** | Baseline | **8.06x Faster** | **+706%** |
+
+> **Minh chứng:**
+> ![Benchmark Chart](../docs/benchmark.png) *(Hãy thay bằng ảnh screenshot Terminal của bạn)*
+
+## 🔨 Cách biên dịch tối ưu
+Để đạt được hiệu năng cao nhất, hãy sử dụng lệnh biên dịch thủ công sau:
+```bash
+g++ -O3 -fopenmp src/main.cpp -o nbody_omp
+./nbody_omp

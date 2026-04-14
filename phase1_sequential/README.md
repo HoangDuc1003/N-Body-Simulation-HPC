@@ -1,25 +1,33 @@
-# N-Body Simulation - Phase 1: Sequential Version
+# 🌌 N-Body Simulation - Phase 1: Sequential Baseline
+> **Cấu trúc nền tảng cho mô phỏng vật lý thiên văn.**
 
-## 📌 Giới thiệu
-Đây là bước đầu tiên trong dự án mô phỏng chuyển động của các vật thể trong không gian dựa trên định luật vạn vật hấp dẫn của Newton. Phiên bản này tập trung vào việc thiết lập thuật toán cơ bản và cấu trúc dữ liệu chính xác.
+![C++](https://img.shields.io/badge/C++-17-blue?style=for-the-badge&logo=c%2B%2B)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
-## 🛠 Công nghệ sử dụng
-* **Ngôn ngữ:** C++17
-* **Trình biên dịch:** GCC/Clang
-* **Hệ thống Build:** CMake
+---
 
-## 🚀 Tính năng
-* Khởi tạo ngẫu nhiên vị trí, khối lượng và vận tốc cho $N$ vật thể.
-* Tính toán lực hấp dẫn giữa từng cặp vật thể với độ phức tạp $O(N^2)$.
-* Cập nhật vị trí dựa trên thuật toán tích phân Euler cơ bản.
-* **Tối ưu hóa toán học:** Sử dụng định luật 3 Newton để giảm 50% số phép tính tương tác lực.
+## 📖 Giới thiệu
+Dự án này mô phỏng tương tác trọng lực giữa $N$ vật thể trong không gian 3D. Đây là phiên bản **Sequential (Tuần tự)**, đóng vai trò là cột mốc (Baseline) để đo lường hiệu năng cho các giải pháp tối ưu hóa sau này.
 
-## 📊 Kết quả (Benchmark)
-* **Số lượng vật thể:** 10,000
-* **Thời gian thực thi:** ~5 giây (trên 1 luồng CPU duy nhất).
+## 🛠 Đặc tính kỹ thuật
+* **Cấu trúc dữ liệu:** Sử dụng `struct Body` tối ưu để quản lý tọa độ $(x, y, z)$, vận tốc và khối lượng.
+* **Thuật toán:** Tính toán lực Newton $F = G \frac{m_1 m_2}{r^2}$ với độ phức tạp $O(N^2)$.
+* **Xử lý số học:** Sử dụng hệ số `SOFTENING` để tránh lỗi chia cho 0 khi các vật thể va chạm.
 
-## 🔨 Cách chạy
-1. Truy cập thư mục: `cd phase1_sequential`
-2. Tạo thư mục build: `mkdir build && cd build`
-3. Biên dịch: `cmake .. && make`
-4. Chạy: `./nbody_sim`
+## 🐢 Kết quả Benchmark
+* **Số lượng:** 10,000 vật thể.
+* **Thời gian:** ~5.0 giây.
+* **Đặc điểm:** Chỉ sử dụng 1 nhân duy nhất của CPU, chưa tận dụng hết phần cứng.
+
+## 🚀 Hướng dẫn cài đặt
+```bash
+# Di chuyển vào thư mục
+cd phase1_sequential
+
+# Biên dịch dự án
+mkdir build && cd build
+cmake ..
+make
+
+# Khởi chạy
+./nbody_sim
