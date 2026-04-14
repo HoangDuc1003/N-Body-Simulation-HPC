@@ -2,6 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <random>
+#include <omp.h>//Initial libraries OPENMP to calculate 
 
 using namespace std;
 
@@ -32,6 +33,9 @@ void initBodies(vector<Body>& bodies) {
 
 void calculateForces(vector<Body>& bodies) {
     int n = bodies.size();
+    //devide for loops for CPUs free
+    #pragma omp parallel for schedule(dynamic)
+
     for (int i = 0; i < n; ++i) {
         double fx = 0.0, fy = 0.0, fz = 0.0;
         
@@ -74,11 +78,16 @@ int main() {
 
     cout << "Starting simulation of " << NUM_BODIES << " bodies for " << NUM_STEPS << " steps..." << endl;
 
+    double start_time = omp_get_wtime();
+
     for (int step = 0; step < NUM_STEPS; ++step) {
         calculateForces(bodies);
         updatePositions(bodies);
     }
 
+    double end_time = omp_get_wtime();
+
     cout << "Simulation completed" << endl;
+    cout << "Time to run: "<<(end_time-start_time)<<" second"<<endl;
     return 0;
 }
