@@ -102,3 +102,10 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 
 # 4. Compile all phases utilizing all available CPU cores
 make -j$(nproc)
+```
+## 📧 Contact
+
+- **Developer**: Hoang Duc
+- **Specialization**: Backend Architecture, Systems Engineering, & High-Performance Computing
+- **Email**: hhprolay@gmail.com
+- **Project Link**: https://github.com/HoangDuc1003/N-Body-Simulation-HPC
