@@ -5,7 +5,7 @@
 ![C++](https://img.shields.io/badge/C++-17%2F20-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
 ![OpenMP](https://img.shields.io/badge/Compute-OpenMP-FF9900?style=for-the-badge)
 ![MPI](https://img.shields.io/badge/Network-MPI-008000?style=for-the-badge)
-![CUDA](https://img.shields.io/badge/Hardware-CUDA_GPU-76B900?style=for-the-badge&logo=nvidia&logoColor=white)
+![CUDA](https://img.shields.io/badge/Hardware-CUDA_GPU-76B900?style=for-the-badge&logo=nvidia&logoColor=white) <br>
 ![CMake](https://img.shields.io/badge/Build-CMake-064F8C?style=for-the-badge&logo=cmake&logoColor=white)
 ![Linux](https://img.shields.io/badge/OS-Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 
