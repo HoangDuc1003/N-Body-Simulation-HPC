@@ -1,3 +1,0 @@
-/home/duchoang.nguyen/distributed_N-body_Simulation/build/CMakeFiles/nbody_sim.dir
-/home/duchoang.nguyen/distributed_N-body_Simulation/build/CMakeFiles/edit_cache.dir
-/home/duchoang.nguyen/distributed_N-body_Simulation/build/CMakeFiles/rebuild_cache.dir
