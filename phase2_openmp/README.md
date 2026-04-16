@@ -11,7 +11,6 @@
 This version optimizes the simulation by leveraging **OpenMP** to distribute the heavy computational workload across all available CPU cores. 
 > **Performance Breakthrough Proof for Phase 2:**
 > <div align="center">
->   <img src="docs/benchmark_p2_1.png" alt="Benchmark Phase 2 - 1" width="48%" />
 >   <img src="docs/benchmark_p2_2.png" alt="Benchmark Phase 2 - 2" width="48%" />
 > </div>
 ### 🛠 Optimization Highlights
