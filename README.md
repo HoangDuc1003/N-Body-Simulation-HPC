@@ -31,42 +31,34 @@ The simulation is strictly versioned into four distinct architectural phases, de
 ### ⚡ [Phase 2: Shared-Memory Parallelization](./phase2_openmp)
 * **Focus:** Multi-core CPU utilization and thread synchronization.
 * **Core Tech:** OpenMP, Lock-free Data Structures, Cache Optimization.
-* **Achievement:** Restructured the memory access pattern to eliminate Data Race conditions without the severe overhead of mutex locks. Achieved an **8.06x linear speedup** (0.62s vs 5.0s) on 10,000 bodies utilizing dynamic thread scheduling.
+* **Achievement:** Restructured the memory access pattern to eliminate Data Race conditions without the severe overhead of mutex locks. Achieved a significant linear speedup on a single machine utilizing dynamic thread scheduling.
 
-### 🌐 [Phase 3: Distributed-Memory Compute (In Progress)](./phase3_mpi)
-* **Focus:** Horizontal scaling, network topology, and data serialization.
+### 🌐 [Phase 3: Distributed-Memory Compute](./phase3_mpi)
+* **Focus:** Horizontal scaling, network topology, and Amdahl's Law.
 * **Core Tech:** MPI (Message Passing Interface), Cluster Computing.
-* **Objective:** Partition the universe domain across multiple physical servers. Overcome network latency bottlenecks using asynchronous collective communications (`MPI_Isend` / `MPI_Irecv` / `MPI_Allgather`).
+* **Achievement:** Successfully partitioned the universe domain across a 4-node cluster. Demonstrated and documented the "Network Latency Bottleneck", showing how communication overhead (`MPI_Allgather`) outweighs compute benefits for small datasets ($N=10,000$).
 
-### 🚀 [Phase 4: Hardware Acceleration (Planned)](./phase4_cuda)
-* **Focus:** SIMT (Single Instruction, Multiple Threads) execution and Host-to-Device memory bandwidth.
+### 🚀 [Phase 4: Hardware Acceleration](./phase4_cuda)
+* **Focus:** SIMT execution and Host-to-Device memory bandwidth limits.
 * **Core Tech:** NVIDIA CUDA C++, GPU VRAM Management.
-* **Objective:** Offload massive floating-point operations to the GPU. Target: Simulating **1,000,000+ bodies** in real-time by minimizing PCIe bus transfers and maximizing block/grid spatial locality.
+* **Achievement:** Offloaded massive floating-point operations to the GPU cores. Successfully simulated **1,000,000 bodies in 0.055 seconds**, demonstrating the astronomical throughput capabilities of GPU hardware over traditional CPU architecture.
 
 ---
 
 ## 📈 Observability & Performance Metrics
 
-Performance is strictly benchmarked at each phase using a standard dataset of $N = 10,000$ bodies.
-
-<div align="center">
-  <img src="./phase1_sequential/docs/benchmark_p1_1.png" alt="Compile & Run" width="800"/>
-  <img src="./phase2_openmp/docs/benchmark_p2_1.png" alt="Compile & Run" width="800"/>
-  <img src="./phase2_openmp/docs/benchmark_p2_2.png" alt="Benchmark Speed" width="800"/>
-  <br>
-  <em>Proof of Execution: Reducing processing time from ~5.0s (Sequential) to 0.62s (Parallel).</em>
-</div>
-
-<br>
+Performance is strictly benchmarked at each phase to track the architectural trade-offs between computation and communication.
 
 ### Global Benchmark Matrix
 
-| Architecture | Compute Domain | Optimal Dataset | Speedup vs Baseline | Status |
+| Architecture | Compute Domain | Dataset Size (N) | Real Time | Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **Phase 1 (Sequential)** | Single Core CPU | 10,000 | Baseline (1.0x) | ✅ Completed |
-| **Phase 2 (OpenMP)** | Multi-Core CPU | 50,000 | **~8.0x Faster** | ✅ Completed |
-| **Phase 3 (MPI)** | Multi-Node Cluster | *Pending* | *Pending* | 🚧 WIP |
-| **Phase 4 (CUDA)** | GPU Cores | **> 1,000,000** | *Target: > 500x* | 📅 Planned |
+| **Phase 1 (Sequential)** | Single Core CPU | 10,000 | 2.772s | ✅ Completed |
+| **Phase 2 (OpenMP)** | Multi-Core CPU | 10,000 | 0.620s | ✅ Completed |
+| **Phase 3 (MPI)** | 4-Node Cluster | 10,000 | 1.531s | ✅ Completed |
+| **Phase 4 (CUDA)** | GPU Cores | **1,000,000** | **0.055s** | ✅ Completed |
+
+*Analytical Note: Phase 3 executes slower than Phase 2 on the 10,000 body dataset due to network communication overhead across distributed memory nodes. Phase 4 processes 100x the data volume in a fraction of the time by leveraging VRAM locality and thousands of parallel CUDA threads.*
 
 ---
 
@@ -75,18 +67,19 @@ Performance is strictly benchmarked at each phase using a standard dataset of $N
 This repository uses a global `CMakeLists.txt` to manage all sub-projects efficiently, allowing you to compile all phases simultaneously.
 
 ### Prerequisites
-* **Compiler:** GCC 9.0+ or Clang 10.0+ (Must support C++17)
-* **Build System:** CMake 3.10+
-* **Libraries:** OpenMP, MPICH/OpenMPI (for Phase 3)
-## 📂 Project Structure
-```
+* **Compiler:** GCC 9.0+ or Clang 10.0+
+* **Build System:** CMake 3.18+
+* **Libraries/Drivers:** OpenMP, OpenMPI, NVIDIA CUDA Toolkit
+
+### 📂 Project Structure
+```text
 Distributed-N-Body-Simulation/
 ├── phase1_sequential/      # Baseline single-threaded implementation
 ├── phase2_openmp/          # Multi-threaded OpenMP optimization
 ├── phase3_mpi/             # Network distributed MPI implementation
-├── phase4_cuda/            # GPU accelerated CUDA kernel (Planned)
+├── phase4_cuda/            # GPU accelerated CUDA kernel
 ├── CMakeLists.txt          # Global build configuration
-└── README.md               # Executive overview (You are here)
+└── README.md               # Executive overview
 ```
 ### Quick Start
 ```bash
