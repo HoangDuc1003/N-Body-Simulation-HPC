@@ -12,7 +12,7 @@ While Phase 2 optimized compute power on a single shared-memory machine, this ph
 
 > **Execution Proof for Phase 3 (4-Node Cluster):**
 > <div align="center">
->   <img src="docs/benchmark_p3_1.png" alt="Benchmark Phase 3" width="60%" />
+>   <img src="docs/benchmark_p3_1 .png" alt="Benchmark Phase 3" width="60%" />
 > </div>
 
 ### 🛠 System Engineering Highlights
